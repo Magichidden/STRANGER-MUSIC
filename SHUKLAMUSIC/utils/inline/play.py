@@ -7,22 +7,22 @@ from SHUKLAMUSIC.utils.formatters import time_to_seconds
 def stream_markup(_, chat_id):
     buttons = [
         [
-            InlineKeyboardButton(text="▶️ تشغيل", callback_data=f"ADMIN Resume|{chat_id}"),
-            InlineKeyboardButton(text="⏸ إيقاف مؤقت", callback_data=f"ADMIN Pause|{chat_id}"),
+            InlineKeyboardButton(text="▶️ پخش", callback_data=f"ADMIN Resume|{chat_id}"),
+            InlineKeyboardButton(text="⏸ توقف", callback_data=f"ADMIN Pause|{chat_id}"),
         ],
         [
-            InlineKeyboardButton(text="⏭ تخطي", callback_data=f"ADMIN Skip|{chat_id}"),
-            InlineKeyboardButton(text="⏹ إنهاء", callback_data=f"ADMIN Stop|{chat_id}"),
+            InlineKeyboardButton(text="⏭ رد کردن", callback_data=f"ADMIN Skip|{chat_id}"),
+            InlineKeyboardButton(text="⏹ پایان", callback_data=f"ADMIN Stop|{chat_id}"),
         ],
         [
-            InlineKeyboardButton(text="🔊 الصوت", callback_data=f"ADMIN Sound|{chat_id}"),
-            InlineKeyboardButton(text="🔇 كتم", callback_data=f"ADMIN Mute|{chat_id}"),
+            InlineKeyboardButton(text="🔊 صدا", callback_data=f"ADMIN Sound|{chat_id}"),
+            InlineKeyboardButton(text="🔇 بی‌صدا", callback_data=f"ADMIN Mute|{chat_id}"),
         ],
         [
-            InlineKeyboardButton(text="📝 قائمة التشغيل", callback_data=f"ADMIN Playlist|{chat_id}"),
-            InlineKeyboardButton(text="ᴄᴏᴅᴇᴅ ʙʏ ɢᴀɴᴢʜ", url="https://t.me/GANZH"),
+            InlineKeyboardButton(text="📝 لیست پخش", callback_data=f"ADMIN Playlist|{chat_id}"),
+            InlineKeyboardButton(text="𝘾𝙤𝙙𝙚𝙙 𝙗𝙮 𝙍𝘼𝙉𝙂𝙀𝙍 ™", url="https://t.me/GANZH"),
         ],
-        [InlineKeyboardButton(text="🗑 اغلاق القائمة", callback_data="close")],
+        [InlineKeyboardButton(text="🗑 بستن منو", callback_data="close")],
     ]
     return buttons
 
@@ -40,7 +40,7 @@ def track_markup(_, videoid, user_id, channel, fplay):
         ],
         [
             InlineKeyboardButton(
-                text="🗑 اغلاق القائمة",
+                text="🗑 بستن منو",
                 callback_data=f"forceclose {videoid}|{user_id}",
             )
         ],
@@ -81,22 +81,22 @@ def stream_markup_timer(_, chat_id, played, dur):
             )
         ],
         [
-            InlineKeyboardButton(text="▶️ تشغيل", callback_data=f"ADMIN Resume|{chat_id}"),
-            InlineKeyboardButton(text="⏸ إيقاف مؤقت", callback_data=f"ADMIN Pause|{chat_id}"),
+            InlineKeyboardButton(text="▶️ پخش", callback_data=f"ADMIN Resume|{chat_id}"),
+            InlineKeyboardButton(text="⏸ توقف", callback_data=f"ADMIN Pause|{chat_id}"),
         ],
         [
-            InlineKeyboardButton(text="⏭ تخطي", callback_data=f"ADMIN Skip|{chat_id}"),
-            InlineKeyboardButton(text="⏹ إنهاء", callback_data=f"ADMIN Stop|{chat_id}"),
+            InlineKeyboardButton(text="⏭ رد کردن", callback_data=f"ADMIN Skip|{chat_id}"),
+            InlineKeyboardButton(text="⏹ پایان", callback_data=f"ADMIN Stop|{chat_id}"),
         ],
         [
-            InlineKeyboardButton(text="🔊 الصوت", callback_data=f"ADMIN Sound|{chat_id}"),
-            InlineKeyboardButton(text="🔇 كتم", callback_data=f"ADMIN Mute|{chat_id}"),
+            InlineKeyboardButton(text="🔊 صدا", callback_data=f"ADMIN Sound|{chat_id}"),
+            InlineKeyboardButton(text="🔇 بی‌صدا", callback_data=f"ADMIN Mute|{chat_id}"),
         ],
         [
-            InlineKeyboardButton(text="📝 قائمة التشغيل", callback_data=f"ADMIN Playlist|{chat_id}"),
-            InlineKeyboardButton(text="ᴄᴏᴅᴇᴅ ʙʏ ɢᴀɴᴢʜ", url="https://t.me/GANZH"),
+            InlineKeyboardButton(text="📝 لیست پخش", callback_data=f"ADMIN Playlist|{chat_id}"),
+            InlineKeyboardButton(text="𝘾𝙤𝙙𝙚𝙙 𝙗𝙮 𝙍𝘼𝙉𝙂𝙀𝙍 ™", url="https://t.me/GANZH"),
         ],
-        [InlineKeyboardButton(text="🗑 اغلاق القائمة", callback_data="close")],
+        [InlineKeyboardButton(text="🗑 بستن منو", callback_data="close")],
     ]
     return buttons
 
@@ -114,7 +114,7 @@ def playlist_markup(_, videoid, user_id, ptype, channel, fplay):
         ],
         [
             InlineKeyboardButton(
-                text="🗑 اغلاق القائمة",
+                text="🗑 بستن منو",
                 callback_data=f"forceclose {videoid}|{user_id}",
             ),
         ],
@@ -131,7 +131,7 @@ def livestream_markup(_, videoid, user_id, mode, channel, fplay):
         ],
         [
             InlineKeyboardButton(
-                text="🗑 اغلاق القائمة",
+                text="🗑 بستن منو",
                 callback_data=f"forceclose {videoid}|{user_id}",
             ),
         ],
@@ -157,7 +157,7 @@ def slider_markup(_, videoid, user_id, query, query_type, channel, fplay):
                 callback_data=f"slider B|{query_type}|{query}|{user_id}|{channel}|{fplay}",
             ),
             InlineKeyboardButton(
-                text="🗑 اغلاق",
+                text="🗑 بستن",
                 callback_data=f"forceclose {query}|{user_id}",
             ),
             InlineKeyboardButton(
