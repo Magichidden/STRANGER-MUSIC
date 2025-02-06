@@ -10,71 +10,60 @@ BASE_URL = "https://api.together.xyz/v1/chat/completions"
 
 @app.on_message(
     filters.command(
-        ["chatgpt", "ai", "ask", "gpt", "solve"],
+        ["chatgpt", "ai","هی ربات", "ask", "gpt", "solve"],
         prefixes=["+", ".", "/", "-", "", "$", "#", "&"],
     )
 )
 async def chat_gpt(bot, message):
     try:
-        # Typing action when the bot is processing the message
         await bot.send_chat_action(message.chat.id, ChatAction.TYPING)
 
         if len(message.command) < 2:
-            # If no question is asked, send an example message
             await message.reply_text(
-                "❍ ᴇxᴀᴍᴘʟᴇ:**\n\n/chatgpt ᴡʜᴏ ɪs ᴛʜᴇ ᴏᴡɴᴇʀ ᴏғ ˹ sᴛʀᴀɴɢᴇʀ ™˼?"
+                "❍ مثال:**\n\n/chatgpt صاحب ˹ آترین موزیک ™˼ کیست؟"
             )
         else:
-            # Extract the query from the user's message
             query = message.text.split(' ', 1)[1]
-            print("Input query:", query)  # Debug input
+            print("سوال ورودی:", query)
 
-            # Set up headers with Authorization and Content-Type
             headers = {
                 "Authorization": f"Bearer {API_KEY}",
                 "Content-Type": "application/json"
             }
 
-            # Prepare the payload with the correct model and user message
             payload = {
-                "model": "meta-llama/Meta-Llama-3.1-8B-Instruct-Turbo",  # Change model if needed
+                "model": "meta-llama/Meta-Llama-3.1-8B-Instruct-Turbo",
                 "messages": [
                     {
                         "role": "user",
-                        "content": query  # User's question from the message
+                        "content": query
                     }
                 ]
             }
 
-            # Send the POST request to the API
             response = requests.post(BASE_URL, json=payload, headers=headers)
 
-            # Debugging: print raw response
-            print("API Response Text:", response.text)  # Print raw response
-            print("Status Code:", response.status_code)  # Check the status code
+            print("پاسخ API:", response.text)
+            print("کد وضعیت:", response.status_code)
 
-            # If the response is empty or not successful, handle the error
             if response.status_code != 200:
-                await message.reply_text(f"❍ ᴇʀʀᴏʀ: API request failed. Status code: {response.status_code}")
+                await message.reply_text(f"❍ خطا: درخواست API ناموفق بود. کد وضعیت: {response.status_code}")
             elif not response.text.strip():
-                await message.reply_text("❍ ᴇʀʀᴏʀ: API se koi valid data nahi mil raha hai. Response was empty.")
+                await message.reply_text("❍ خطا: هیچ داده معتبری از API دریافت نشد. پاسخ خالی بود.")
             else:
-                # Attempt to parse the JSON response
                 try:
                     response_data = response.json()
-                    print("API Response JSON:", response_data)  # Debug response JSON
+                    print("پاسخ JSON از API:", response_data)
 
-                    # Get the assistant's response from the JSON data
                     if "choices" in response_data and len(response_data["choices"]) > 0:
                         result = response_data["choices"][0]["message"]["content"]
                         await message.reply_text(
-                            f"{result} \n\nＡɴsᴡᴇʀᴇᴅ ʙʏ➛[˹ sᴛʀᴀɴɢᴇʀ-ᴍᴜsɪᴄ ™˼](https://t.me/SHIVANSH474)",
+                            f"{result} \n\nپاسخ داده شده توسط➛[˹ آترین موزیک ™˼](https://t.me/atrinmusic_tm1)",
                             parse_mode=ParseMode.MARKDOWN
                         )
                     else:
-                        await message.reply_text("❍ ᴇʀʀᴏʀ: No response from API.")
+                        await message.reply_text("❍ خطا: پاسخی از API دریافت نشد.")
                 except ValueError:
-                    await message.reply_text("❍ ᴇʀʀᴏʀ: Invalid response format.")
+                    await message.reply_text("❍ خطا: فرمت پاسخ نامعتبر است.")
     except Exception as e:
-        # Catch any other exceptions and send an error message
-        await message.reply_text(f"**❍ ᴇʀʀᴏʀ: {e} ")
+        await message.reply_text(f"**❍ خطا: {e} ")
